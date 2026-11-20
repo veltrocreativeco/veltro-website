@@ -6,12 +6,14 @@ import SEO from '../components/SEO';
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
+    email: '',
     brand: '',
     category: 'Skincare',
     message: ''
   });
 
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,12 +23,44 @@ export default function Contact() {
       [name]: value
     }));
 
-    setSubmitted(false);
+    setStatus('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setStatus('');
+
+    try {
+      const response = await fetch(
+        'https://formspree.io/f/xqpqdzde',
+        {
+          method: 'POST',
+          body: new FormData(e.target),
+          headers: {
+            Accept: 'application/json'
+          }
+        }
+      );
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          brand: '',
+          category: 'Skincare',
+          message: ''
+        });
+        e.target.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -69,20 +103,10 @@ export default function Contact() {
                 }}
               >
                 <div className="feature-card" style={{ padding: '24px' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '8px'
-                    }}
-                  >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                     <Globe size={18} style={{ color: 'var(--accent)' }} />
-                    <h3 style={{ fontSize: '1.05rem' }}>
-                      Remote Collaboration
-                    </h3>
+                    <h3 style={{ fontSize: '1.05rem' }}>Remote Collaboration</h3>
                   </div>
-
                   <p style={{ fontSize: '0.9rem' }}>
                     Work together remotely through digital communication
                     and creative project reviews.
@@ -90,20 +114,10 @@ export default function Contact() {
                 </div>
 
                 <div className="feature-card" style={{ padding: '24px' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '8px'
-                    }}
-                  >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                     <Sparkles size={18} style={{ color: 'var(--accent)' }} />
-                    <h3 style={{ fontSize: '1.05rem' }}>
-                      Creative Focus
-                    </h3>
+                    <h3 style={{ fontSize: '1.05rem' }}>Creative Focus</h3>
                   </div>
-
                   <p style={{ fontSize: '0.9rem' }}>
                     Product commercials, skincare visuals, luxury fragrances,
                     footwear, and fashion accessories.
@@ -111,20 +125,10 @@ export default function Contact() {
                 </div>
 
                 <div className="feature-card" style={{ padding: '24px' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '12px',
-                      marginBottom: '8px'
-                    }}
-                  >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
                     <Clock size={18} style={{ color: 'var(--accent)' }} />
-                    <h3 style={{ fontSize: '1.05rem' }}>
-                      Project Details
-                    </h3>
+                    <h3 style={{ fontSize: '1.05rem' }}>Project Details</h3>
                   </div>
-
                   <p style={{ fontSize: '0.9rem' }}>
                     Include your product category, preferred video format,
                     visual references, and campaign goals.
@@ -139,7 +143,6 @@ export default function Contact() {
                   <label htmlFor="name" className="form-label">
                     Your Name *
                   </label>
-
                   <input
                     id="name"
                     name="name"
@@ -153,10 +156,25 @@ export default function Contact() {
                 </div>
 
                 <div className="form-group">
+                  <label htmlFor="email" className="form-label">
+                    Your Email *
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="form-input"
+                    placeholder="Enter your email address"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="form-group">
                   <label htmlFor="brand" className="form-label">
                     Brand or Company Name *
                   </label>
-
                   <input
                     id="brand"
                     name="brand"
@@ -173,7 +191,6 @@ export default function Contact() {
                   <label htmlFor="category" className="form-label">
                     Product Category
                   </label>
-
                   <select
                     id="category"
                     name="category"
@@ -192,7 +209,6 @@ export default function Contact() {
                   <label htmlFor="message" className="form-label">
                     Project Brief &amp; Creative Goals *
                   </label>
-
                   <textarea
                     id="message"
                     name="message"
@@ -208,16 +224,21 @@ export default function Contact() {
                   type="submit"
                   className="btn-primary"
                   style={{ width: '100%' }}
+                  disabled={submitting}
                 >
-                  Submit Project Brief
+                  {submitting ? 'Sending...' : 'Submit Project Brief'}
                   <Send size={17} />
                 </button>
 
-                {submitted && (
+                {status === 'success' && (
                   <div className="form-success" role="status">
-                    Your form is ready, {formData.name}. This is currently
-                    a demo submission and has not been sent. A form service
-                    will be connected before the website goes live.
+                    Thank you, {formData.name || 'your message'}! Your project inquiry has been sent successfully.
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="form-success" role="alert">
+                    Sorry, your message could not be sent. Please try again.
                   </div>
                 )}
               </form>
