@@ -67,7 +67,7 @@ export default function Contact() {
     <>
       <SEO
         title="Contact — veltro.co AI Video Advertising"
-        description="Get in touch with veltro.co to discuss AI-generated product commercials, video advertisements, and creative visual campaigns."
+        description="Contact Veltro to discuss cinematic AI video ads, product commercials and creative advertising campaigns for fashion, perfume, skincare and other product brands."
         canonicalPath="/contact"
       />
 

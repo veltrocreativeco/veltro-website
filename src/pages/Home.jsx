@@ -14,8 +14,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="veltro.co — AI Commercial & Concept Film Studio"
-        description="veltro.co creates cinema-grade AI-generated concept advertisements and visual brand campaigns for skincare, perfume, and luxury fashion."
+        title="Veltro | Cinematic AI Video Ads for Product Brands"
+        description="Veltro creates cinematic AI video advertisements, product commercials and creative campaigns for fashion, perfume, skincare and modern product brands."
         canonicalPath="/"
       />
 

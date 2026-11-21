@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 
 export default function SEO({ title, description, canonicalPath = '/' }) {
   useEffect(() => {
+    const siteUrl = 'https://veltro-co.vercel.app';
+
     document.title = title;
 
     const setMeta = (selector, attrName, attrValue, content) => {
@@ -21,7 +23,8 @@ export default function SEO({ title, description, canonicalPath = '/' }) {
     setMeta('meta[property="og:title"]', 'property', 'og:title', title);
     setMeta('meta[property="og:description"]', 'property', 'og:description', description);
     setMeta('meta[property="og:type"]', 'property', 'og:type', 'website');
-    setMeta('meta[property="og:url"]', 'property', 'og:url', `https://veltro.co${canonicalPath}`);
+    setMeta('meta[property="og:url"]', 'property', 'og:url', `${siteUrl}${canonicalPath}`);
+
     setMeta('meta[name="twitter:card"]', 'name', 'twitter:card', 'summary_large_image');
     setMeta('meta[name="twitter:title"]', 'name', 'twitter:title', title);
     setMeta('meta[name="twitter:description"]', 'name', 'twitter:description', description);
@@ -34,7 +37,7 @@ export default function SEO({ title, description, canonicalPath = '/' }) {
       document.head.appendChild(canonical);
     }
 
-    canonical.setAttribute('href', `https://veltro.co${canonicalPath}`);
+    canonical.setAttribute('href', `${siteUrl}${canonicalPath}`);
   }, [title, description, canonicalPath]);
 
   return null;

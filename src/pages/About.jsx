@@ -8,7 +8,7 @@ export default function About() {
     <>
       <SEO
         title="About — veltro.co AI Video Advertising"
-        description="Discover how veltro.co creates AI-powered product advertisements and cinematic visual content for modern brands."
+        description="Meet Veltro, an independent AI video advertising creator producing cinematic product ads and creative visual campaigns for fashion, perfume, skincare and modern brands."
         canonicalPath="/about"
       />
 

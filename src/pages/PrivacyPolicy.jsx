@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
     <>
       <SEO
         title="Privacy Policy — veltro.co"
-        description="Read the veltro.co Privacy Policy to understand how website visitor information and project inquiries are handled."
+        description="Read Veltro's Privacy Policy to learn how personal information, website visitor data and project inquiry details are collected, used and protected."
         canonicalPath="/privacy-policy"
       />
 

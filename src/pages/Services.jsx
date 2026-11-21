@@ -12,7 +12,7 @@ import {
 import SEO from '../components/SEO';
 
 const SERVICES_LIST = [
-  {
+   {
     icon: Video,
     title: 'AI Product Commercials',
     description:
@@ -53,11 +53,11 @@ const SERVICES_LIST = [
 export default function Services() {
   return (
     <>
-      <SEO
-        title="Services — veltro.co AI Video Advertising"
-        description="Explore AI product commercials, concept films, product visuals, and social media video adaptations by veltro.co."
-        canonicalPath="/services"
-      />
+     <SEO
+  title="Services — veltro.co AI Video Advertising"
+  description="Explore Veltro's AI video advertising services, including cinematic product commercials, creative concept films, campaign visuals and social media video ads for fashion, perfume, skincare and modern brands."
+  canonicalPath="/services"
+/>
 
       <section className="section-block">
         <div className="container">

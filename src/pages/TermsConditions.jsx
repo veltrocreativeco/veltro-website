@@ -6,7 +6,7 @@ export default function TermsConditions() {
     <>
       <SEO
         title="Terms & Conditions — veltro.co"
-        description="Read the terms and conditions for using veltro.co, including portfolio disclosures, intellectual property, and project inquiries."
+        description="Read Veltro's Terms and Conditions covering website use, AI-generated concept advertisements, intellectual property, project inquiries and service agreements."
         canonicalPath="/terms-and-conditions"
       />
 
