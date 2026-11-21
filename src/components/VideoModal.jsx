@@ -63,6 +63,7 @@ export default function VideoModal({ project, onClose }) {
         <div className="modal-video-wrapper">
           <video
             src={project.videoUrl}
+            poster={project.thumbnail}
             controls
             autoPlay
             playsInline

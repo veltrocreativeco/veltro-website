@@ -1,9 +1,10 @@
 
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Play, Sparkles } from 'lucide-react';
 
 export default function VideoCard({ project, onSelect }) {
   const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleMouseEnter = () => {
     if (videoRef.current) {
@@ -15,6 +16,7 @@ export default function VideoCard({ project, onSelect }) {
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
+      setIsPlaying(false);
     }
   };
 
@@ -30,7 +32,7 @@ export default function VideoCard({ project, onSelect }) {
         onClick={() => onSelect(project)}
         role="button"
         tabIndex={0}
-        aria-label={`Play ${project.title} — ${project.conceptLabel}`}
+        aria-label={`Play ${project.title}`}
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -38,6 +40,20 @@ export default function VideoCard({ project, onSelect }) {
           }
         }}
       >
+        <img
+          src={project.thumbnail}
+          alt={project.title}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 1,
+            opacity: isPlaying ? 0 : 1
+          }}
+        />
+
         <video
           ref={videoRef}
           src={project.videoUrl}
@@ -45,6 +61,17 @@ export default function VideoCard({ project, onSelect }) {
           loop
           playsInline
           preload="metadata"
+          onPlaying={() => setIsPlaying(true)}
+          onPause={() => setIsPlaying(false)}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: 2,
+            opacity: isPlaying ? 1 : 0
+          }}
         />
 
         <div className="video-card-overlay">

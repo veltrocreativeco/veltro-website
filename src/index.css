@@ -1,3 +1,4 @@
+
 :root {
   --bg-primary: #151515;
   --bg-elevated: #1c1c1c;
@@ -618,11 +619,12 @@ h1, h2, h3, h4, .font-display {
 
 .modal-container {
   width: 100%;
-  max-width: 960px;
+  max-width: 600px;
+  max-height: calc(100vh - 48px);
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: 20px;
-  overflow: hidden;
+  overflow-y: auto;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.75);
 }
 
@@ -659,15 +661,19 @@ h1, h2, h3, h4, .font-display {
 
 .modal-video-wrapper {
   position: relative;
-  width: 100%;
+  width: min(360px, 36.56vh);
+  height: min(640px, 65vh);
   aspect-ratio: 9 / 16;
+  margin: 0 auto;
   background: #000;
+  overflow: hidden;
 }
 
 .modal-video-wrapper video {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 .modal-details {
@@ -1097,5 +1103,18 @@ h1, h2, h3, h4, .font-display {
 
   .section-block {
     padding: 68px 0;
+  }
+
+  .modal-backdrop {
+    padding: 12px;
+  }
+
+  .modal-container {
+    max-height: calc(100vh - 24px);
+  }
+
+  .modal-video-wrapper {
+    width: min(360px, 100%);
+    height: min(640px, 65vh);
   }
 }
