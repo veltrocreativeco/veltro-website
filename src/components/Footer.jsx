@@ -16,8 +16,8 @@ export default function Footer() {
               </span>
             </Link>
             <p className="footer-tagline">
-              AI-powered commercial production studio crafting cinematic concept advertisements and
-              brand films for skincare, fragrance, and luxury fashion.
+              AI-powered video advertising and cinematic visual
+              storytelling for brands across every industry.
             </p>
           </div>
 
@@ -33,10 +33,43 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="footer-heading">Legal & Transparency</h4>
+            <h4 className="footer-heading">Legal &amp; Transparency</h4>
             <ul className="footer-links">
               <li><Link to="/privacy-policy">Privacy Policy</Link></li>
               <li><Link to="/terms-and-conditions">Terms &amp; Conditions</Link></li>
+            </ul>
+
+            <h4 className="footer-heading" style={{ marginTop: '24px' }}>
+              Follow Veltro
+            </h4>
+            <ul className="footer-links">
+              <li>
+                <a
+                  href="https://www.instagram.com/official_veltro.co/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61597030761617"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/asghar-husain786/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
         </div>
